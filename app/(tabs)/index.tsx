@@ -1,74 +1,140 @@
-import { Image, StyleSheet, Platform } from 'react-native';
+import { Button, Text, View, TouchableOpacity, StyleSheet, TextInput, Alert } from "react-native";
+import { useEffect, useState, useRef} from 'react';
+import { Link } from 'expo-router'
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
 
-export default function HomeScreen() {
-  return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12'
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
-  );
-}
-
-const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
+export const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    backgroundColor: '#FFFFED',
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  input: {
+    width: '60%', // Input will take 75% of the screen width
+    alignSelf: 'center', // Centers the input horizontally
+    borderColor: '#888', 
+    borderWidth: 1,
+    padding: 12, 
+    marginVertical: 10,
+    borderRadius: 15, // More rounded corners for a sleek look
+    backgroundColor: '#fff', 
+    shadowColor: '#000', 
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3, 
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
+  gradient: {
     position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    backgroundColor: 'transparent',
+  },
+  camera: {
+    flex: 1,
+  },
+  buttonContainer: {
+    width: '30%',
+    alignSelf: 'center',
+    marginVertical: 10,
+    borderRadius: 25, // Add rounded corners
+    overflow: 'hidden', // Ensure the border radius is applied
+    backgroundColor: '#2196F3', // Default button color
+  },
+  button: {
+    flex: 1,
+    alignSelf: "flex-end",
+    alignItems: "center",
+  },
+  text: {
+    fontSize: 24,
+    fontWeight: "bold",
+    color: "white",
+  },
+  title: {
+    fontSize: 25, // Larger font for Known Allergies
+    marginBottom: 20,
+    textAlign: 'center',
+    fontWeight: 'bold', // Bold to make it stand out
+  },
+  subtitle: {
+    fontSize: 20, // Medium font for Known Allergies
+    marginBottom: 20,
+    textAlign: 'center',
+    fontWeight: 'bold', // Bold to make it stand out
+  },
+  previewText: {
+    fontSize: 24,
+    marginBottom: 20,
+  },
+  previewImage: {
+    width: 300,
+    height: 400,
+    marginBottom: 20,
+  },
+  buttonRow: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    width: "80%",
+  },
+  previewContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  allergyItem: {
+    borderColor: '#ccc', // Border around each allergy item
+    borderWidth: 1,
+    padding: 10,
+    marginVertical: 5,
+    borderRadius: 10, // Rounded corners
+    backgroundColor: '#f9f9f9', // Light background color
+    shadowColor: '#000', 
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 2,
+  },
+  allergyListContainer: {
+    alignItems: 'center', // Center the list
+    marginBottom: 20, // Space at the bottom
   },
 });
+
+export default function HomeScreen() {
+  const [email, setEmail] = useState('');
+
+  const handleLoginWithOtp = () => {
+    console.log("Login with OTP");
+  }
+  
+  return (
+    <View style={styles.container}>
+        <Text style={styles.title}>Login to Banana Ai</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Email"
+          value={email}
+          onChangeText={setEmail}
+          keyboardType="email-address"
+          autoCapitalize="none"
+        />
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity onPress={handleLoginWithOtp}>
+            <Button title="Send Magic Link" onPress={handleLoginWithOtp} />
+          </TouchableOpacity>
+        </View>
+        <View style={styles.buttonContainer}>
+          <Link href="/(tabs)/camera" asChild>
+            <TouchableOpacity>
+              <Button title="Bypass Login" />
+            </TouchableOpacity>
+          </Link>
+        </View>
+      </View>
+  )
+}
+
+
