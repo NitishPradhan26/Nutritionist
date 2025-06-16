@@ -36,3 +36,12 @@ A smart mobile app that helps users detect allergens in their meals and identify
     npx expo start
    ```
 
+3. Configure OpenAI API Key
+   - Open `services/openai.tsx`
+   - Add your OpenAI API key to the `apiKey` field:
+   ```typescript
+   const openai = new OpenAI({
+       apiKey: 'your-api-key-here',
+   });
+   ```
+
