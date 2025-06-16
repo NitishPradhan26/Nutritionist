@@ -1,8 +1,28 @@
-# Welcome to your Expo app 👋
+# FoodAllergyTracker
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A smart mobile app that helps users detect allergens in their meals and identify patterns between ingredients and how they feel—empowering them to take control of their health.
 
-## Get started
+## 🔍 Highlights
+
+🧠 **AI-Powered Allergen Detection**: Uses OpenAI API to analyze meal photos and generate ingredient lists with potential allergens automatically highlighted  
+📸 **Image-Based Input**: Snap a photo of your meal to start the analysis—no manual entry required  
+📈 **Pattern Recognition Engine**: Tags post-meal reactions (e.g., "lethargic", "energetic") to identify distress-causing ingredients over time  
+⚡ **Real-Time Sync**: Built with Firebase for seamless, always-on data syncing  
+📱 **Mobile-First Design**: Developed using React Native with TypeScript for smooth performance and cross-platform compatibility  
+
+## 📱 Demo Features
+
+### 1. Allergen Detection
+- Take a photo of your meal  
+- Get a list of ingredients via OpenAI  
+- Known allergens are flagged instantly
+
+### 2. Pattern Recognition
+- Log how you feel after a meal (e.g., "bloated", "energized")  
+- The app learns over time, identifying ingredients frequently linked to negative symptoms  
+- Personalized insights help guide better meal choices
+
+## 🚀 Quick Start
 
 1. Install dependencies
 
@@ -16,35 +36,3 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
     npx expo start
    ```
 
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
